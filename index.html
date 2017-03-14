@@ -23,21 +23,82 @@
           $container.appendTo($body);
 
           var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.addClass('tweet') //2
-          $tweet.text('@' + tweet.user + ': ' + tweet.message + ' - ' + moment().calendar());
+          var $tweet = $('<p></p>');
+          var $author = $('<h2></h2>')
+          $author.appendTo($container);
+          $author.text(tweet.user);
+          $tweet.addClass('tweet'); //2
+          // $tweet.addClass(tweet.user);
+          $tweet.text(tweet.message + ' - ' + moment().calendar());
           $tweet.appendTo($container); //3 prepedTo
+
+          $profile = $('<button></button>');
+          $profile.addClass('profile');
+          $profile.text('@' + tweet.user + ': ');
+          $profile.prependTo($tweet);
+
+          $tweet.addClass(tweet.user);
+          $author.addClass(tweet.user);
+          $profile.addClass(tweet.user);
+
           index -= 1;
         }
         //Button showing new tweets one at a time. Might implement an auto refresh later.
         $('#homeButton').on('click', function() {
              var newIndex = streams.home.length - 1;
              var tweetsToAdd = streams.home[newIndex];
-             var $tweetsToAdd = $('<div></div>');
-             $tweetsToAdd.addClass('tweet')
-             $tweetsToAdd.text('@' + tweetsToAdd.user + ': ' + tweetsToAdd.message + ' - ' + moment().calendar());
+             var $tweetsToAdd = $('<p></p>');
+             var $newAuthor = $('<h2></h2>');
+             $newAuthor.text(tweetsToAdd.user);
+             $tweetsToAdd.addClass('tweet');
+            //  $tweetsToAdd.addClass(tweetsToAdd.user);
+             $tweetsToAdd.text(tweetsToAdd.message + ' - ' + moment().calendar());
              $tweetsToAdd.insertAfter('h1');
+             $newAuthor.insertAfter('h1');
+
+             $newProfile = $('<button></button>');
+             $newProfile.addClass('profile');
+             $newProfile.text('@' + tweetsToAdd.user + ': ')
+             $newProfile.prependTo($tweetsToAdd);
+
+             $tweetsToAdd.addClass(tweetsToAdd.user);
+             $newAuthor.addClass(tweetsToAdd.user);
+             $newProfile.addClass(tweetsToAdd.user);
           });
+
+        $('.profile.shawndrost').on('click', function(){
+         $('p').not('.shawndrost').hide();
+         $('h2').hide();
+         $('.intro').text("@shawndrost");
+        });
+
+        $('.profile.sharksforcheap').on('click', function(){
+         $('p').not('.sharksforcheap').hide();
+         $('h2').hide();
+         $('.intro').text("@sharksforcheap");
+        });
+
+        $('.profile.mracus').on('click', function(){
+         $('p').not('.mracus').hide();
+         $('h2').hide();
+         $('.intro').text("@mracus");
+        });
+
+        $('.profile.douglascalhoun').on('click', function(){
+         $('p').not('.douglascalhoun').hide();
+         $('h2').hide();
+         $('.intro').text("@douglascalhoun");
+        });
+
+        var $showAll = $('<button class = "showAll">Show All Tweets</button>');
+        $showAll.appendTo($body);
+
+        $('.showAll').on('click', function(){
+          $('p').show();
+          $('h2').show();
+          $('.intro').text("What's Happening?");
+        });
+
 
       });
 
