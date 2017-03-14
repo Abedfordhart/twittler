@@ -1,6 +1,7 @@
   body {
     font-family: Helvetica;
     font-size: 14px;
+    background-color: grey;
   }
 
   h1.intro {
@@ -9,9 +10,18 @@
     font-size: 50px
   }
 
+  h2 {
+    font-family: monospace;
+  }
+
+  p {
+    color: black;
+  }
+
   .tweet {
     border-style: groove;
 	  border-width: 5px;
+    height: 50px;
 	  background: white;
     border-radius: 10px
   }
@@ -26,4 +36,15 @@
     position: absolute;
     top: 10px;
     left: 10px;
+  }
+
+  button.profile {
+    color: #0000ff;
+    background: none;
+    border: none;
+  }
+
+  button.showAll {
+    background: none;
+    border: none;
   }
