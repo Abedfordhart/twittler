@@ -1,27 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <script src="moment.js"></script>
+    <title>Twittler</title>
   </head>
   <body>
+    <h1 class = "intro">What's happening?</h1>
+    <button id="homeButton"></button>
     <script>
 
       $(document).ready(function(){
         var $body = $('body');
-        $body.html('');
+        //$body.html('');
 
         var index = streams.home.length - 1;
         while(index >= 0){
+
+          var $container = $('<div></div>');
+          $container.appendTo($body);
+
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
+          $tweet.addClass('tweet') //2
+          $tweet.text('@' + tweet.user + ': ' + tweet.message + ' - ' + moment().calendar(today));
+          $tweet.appendTo($container); //3 prepedTo
           index -= 1;
         }
+        //Button showing new tweets one at a time. Might implement an auto refresh later.
+        $('#homeButton').on('click', function() {
+             var newIndex = streams.home.length - 1;
+             var tweetsToAdd = streams.home[newIndex];
+             var $tweetsToAdd = $('<div></div>');
+             $tweetsToAdd.addClass('tweet')
+             $tweetsToAdd.text('@' + tweetsToAdd.user + ': ' + tweetsToAdd.message + ' - ' + moment().calendar(today));
+             $tweetsToAdd.insertAfter('h1');
+          });
 
       });
 
+console.log(streams.home)
     </script>
   </body>
 </html>
