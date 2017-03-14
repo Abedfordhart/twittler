@@ -25,7 +25,7 @@
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
           $tweet.addClass('tweet') //2
-          $tweet.text('@' + tweet.user + ': ' + tweet.message + ' - ' + moment().calendar(today));
+          $tweet.text('@' + tweet.user + ': ' + tweet.message + ' - ' + moment().calendar());
           $tweet.appendTo($container); //3 prepedTo
           index -= 1;
         }
@@ -35,7 +35,7 @@
              var tweetsToAdd = streams.home[newIndex];
              var $tweetsToAdd = $('<div></div>');
              $tweetsToAdd.addClass('tweet')
-             $tweetsToAdd.text('@' + tweetsToAdd.user + ': ' + tweetsToAdd.message + ' - ' + moment().calendar(today));
+             $tweetsToAdd.text('@' + tweetsToAdd.user + ': ' + tweetsToAdd.message + ' - ' + moment().calendar());
              $tweetsToAdd.insertAfter('h1');
           });
 
